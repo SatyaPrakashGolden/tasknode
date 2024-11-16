@@ -1,4 +1,4 @@
-\documentclass{article}
+##documentclass
 \usepackage[utf8]{inputenc}
 \usepackage{hyperref}
 \usepackage{graphicx}
