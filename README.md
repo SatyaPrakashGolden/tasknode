@@ -1,102 +1,65 @@
-##documentclass
-\usepackage[utf8]{inputenc}
-\usepackage{hyperref}
-\usepackage{graphicx}
+# TaskNode - Node.js Developer Assignment
 
-\title{TaskNode Project: A Revolutionary Task Management System}
-\author{Satya Prakash}
-\date{}
+## Overview
+This repository contains the implementation of a task management system with secure user authentication, task creation, updates, real-time notifications, and more. The system is designed using Node.js, Express, MongoDB, and Socket.io for real-time updates.
 
-\begin{document}
+## Features
 
-\maketitle
+1. **User Registration**
+   - Endpoint: `/api/auth/signup`
+   - Accepts: `username`, `email`, and `password`
+   - Validation: Ensures proper email formatting and strong password criteria using regex.
 
-\section*{Overview}
-Welcome to the \textbf{TaskNode Project}, a cutting-edge and highly efficient task management system built with modern technologies. This project showcases robust user authentication, dynamic task management, and real-time updates, all while ensuring maximum security, performance, and user-friendliness. Powered by Node.js, Express, MongoDB, and JWT for secure token-based authentication, TaskNode is engineered to handle all your task management needs with unmatched ease and precision.
+2. **User Login**
+   - Endpoint: `/api/auth/login`
+   - Accepts: `username/email` and `password`
+   - Functionality: Uses `bcrypt.compare()` for secure password verification.
+   - Issues a secure JWT token upon successful login for user authentication.
 
-The system boasts an array of features, from task creation and real-time updates to secure user authentication, task tracking, and rate limiting. TaskNode is also optimized for performance with regex-based searching and WebSocket integration for real-time updates, ensuring a seamless experience for all users.
+3. **Get User Profile**
+   - Endpoint: `/api/users/me`
+   - Retrieves: Authenticated user details such as `username`, `email`, roles, etc.
+   - Security: Secured with JWT token validation ensuring only authorized users can access this endpoint.
 
-\section*{Key Features}
+4. **Task Management**
+   - **Create Task**: `/api/tasks/create`
+     - Allows creation of tasks with `title`, `description`, `due date`, `priority`, and `status`.
+   - **Read Tasks**: `/api/tasks`
+     - Fetch tasks with optional filtering and sorting functionality.
+   - **Update Task**: `/api/tasks/update/:id`
+     - Allows task modification.
+   - **Delete Task**: `/api/tasks/delete/:id`
+     - Safely deletes tasks with appropriate validations.
 
-\subsection*{1. User Registration}
-\begin{itemize}
-    \item Developed a robust, secure \textbf{Sign-Up} endpoint that accepts critical user details such as \texttt{username}, \texttt{email}, and \texttt{password}, ensuring a flawless user experience.
-    \item Enforced cutting-edge validation mechanisms that ensure correct \texttt{email} formatting and strong password requirements, minimizing the risk of unauthorized access.
-    \item Leveraged regex patterns to verify the strength and security of passwords, allowing only the most secure password combinations.
-\end{itemize}
+5. **Real-Time Updates**
+   - Implemented **WebSockets (Socket.io)** for real-time notifications during task assignments or status changes.
 
-\subsection*{2. User Login}
-\begin{itemize}
-    \item Created a highly flexible and secure \textbf{Login} endpoint, supporting both \texttt{username} and \texttt{email} for easy access.
-    \item Integrated \texttt{bcrypt.compare()} for ultra-secure password verification, ensuring no password data is stored in plain text.
-    \item Issued a secure JWT token on successful login, which is stored client-side, allowing for stateless authentication in subsequent requests.
-\end{itemize}
+6. **Task Tracking**
+   - Each task is assigned a **unique tracking number** for easy monitoring and improved usability.
 
-\subsection*{3. Get User Profile}
-\begin{itemize}
-    \item Designed a highly secure endpoint for retrieving authenticated user details, including \texttt{username}, \texttt{email}, roles, and other important attributes.
-    \item Implemented JWT middleware to ensure that only authorized users with valid tokens can access their personal profile.
-    \item Robust user experience with clear and easy access to their data, reinforcing trust and security.
-\end{itemize}
+7. **Rate Limiting**
+   - Rate limiting has been implemented on critical APIs to prevent abuse and ensure fair resource utilization.
 
-\subsection*{4. Task Management}
-\begin{itemize}
-    \item \textbf{Create Task}: Developed a comprehensive task creation endpoint, with options for \texttt{title}, \texttt{description}, \texttt{due date}, \texttt{priority}, and \texttt{status}, ensuring full control over task creation.
-    \item \textbf{Read Task}: Implemented advanced filtering, sorting, and pagination functionality to retrieve tasks with precision and efficiency.
-    \item \textbf{Update Task}: Enabled users to easily update task details, with automatic validation and error handling to prevent invalid task modifications.
-    \item \textbf{Delete Task}: Created a safe, secure delete endpoint, ensuring tasks are only deleted when explicitly requested by authorized users.
-\end{itemize}
+8. **Regex Searching**
+   - Implemented regex-based search functionality for tasks, allowing users to filter and track task statuses like `completed`, `pending`, and `overdue`.
 
-\subsection*{5. Real-Time Updates}
-\begin{itemize}
-    \item Integrated powerful \textbf{WebSockets (Socket.io)} to provide real-time notifications, ensuring users are always updated on task changes, assignments, and status updates.
-    \item Real-time updates help teams stay synchronized, improving productivity and reducing the risk of missing important updates.
-\end{itemize}
+## Installation
 
-\subsection*{6. Task Tracking}
-\begin{itemize}
-    \item Introduced a unique \textbf{tracking number} for each task, enabling easy tracking and monitoring of task progress at all stages of the workflow.
-    \item Task tracking adds a layer of transparency and accountability, ensuring tasks are completed on time and within scope.
-\end{itemize}
+### Clone the Repository
 
-\subsection*{7. Rate Limiting}
-\begin{itemize}
-    \item Applied sophisticated rate-limiting techniques to prevent API abuse, ensuring the system remains fast and responsive for all users.
-    \item Rate limiting helps prevent overuse of resources and provides fair access to all users, preventing overload or downtime.
-\end{itemize}
+```bash
+git clone https://github.com/SatyaPrakashGolden/tasknode.git
+cd tasknode
 
-\subsection*{8. Regex Searching}
-\begin{itemize}
-    \item Implemented powerful \textbf{regex-based searching} on task fields, allowing users to filter tasks based on \texttt{status}, such as \texttt{completed}, \texttt{pending}, and \texttt{overdue}.
-    \item Users can quickly locate specific tasks, improving task management efficiency and user experience.
-\end{itemize}
 
-\subsection*{9. Hosting and Deployment}
-\begin{itemize}
-    \item The TaskNode project is fully hosted on \textbf{Vercel}, providing blazing-fast server response times and 24/7 availability.
-    \item The hosting infrastructure is optimized for high scalability and performance, ensuring TaskNode can handle large volumes of users and tasks seamlessly.
-\end{itemize}
 
-\section*{Access the Project}
+##Install Dependencies
 
-\subsection*{GitHub Repository}
-\url{https://github.com/SatyaPrakashGolden/tasknode.git}
+npm install
 
-\subsection*{API URL}
-\url{https://tasknode-git-master-satyas-projects.vercel.app/api/}
+##Start the Application
+node index.js
 
-\subsection*{Live Hosting URL}
-\url{https://tasknode-git-master-satyas-projects.vercel.app/}
 
-\subsection*{Admin Credentials}
-\begin{verbatim}
-{
-  "usernameOrEmail": "satyaprakashsinghkasia@gmail.com",
-  "password": "SecurePass123!"
-}
-\end{verbatim}
 
-\section*{Contact and Feedback}
-For any inquiries or further information, feel free to reach out. I'm happy to provide any additional details or assist with any questions you might have.
 
-\end{document}
